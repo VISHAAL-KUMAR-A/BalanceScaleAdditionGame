@@ -1,61 +1,12 @@
 <template>
-  <div class="not-found">
-    <div class="content">
-      <span class="icon">❓</span>
-      <h1>404 - Page Not Found</h1>
-      <p>The page you're looking for doesn't exist.</p>
-      <router-link to="/" class="btn">Go Home</router-link>
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-purple-700 to-purple-900 p-8">
+    <div class="bg-gray-800 p-12 rounded-3xl text-center max-w-lg border border-gray-700">
+      <span class="text-8xl block mb-6">❓</span>
+      <h1 class="text-4xl font-bold text-gray-100 mb-4">404 - Page Not Found</h1>
+      <p class="text-gray-400 mb-8 text-lg">The page you're looking for doesn't exist.</p>
+      <router-link to="/" class="inline-block px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl transition-all duration-200 hover:-translate-y-1">
+        Go Home
+      </router-link>
     </div>
   </div>
 </template>
-
-<style scoped>
-.not-found {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 2rem;
-}
-
-.content {
-  background: white;
-  padding: 3rem;
-  border-radius: 20px;
-  text-align: center;
-  max-width: 500px;
-}
-
-.icon {
-  font-size: 5rem;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-h1 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-}
-
-p {
-  color: #7f8c8d;
-  margin-bottom: 2rem;
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  background: #667eea;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: transform 0.2s;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-</style>
-

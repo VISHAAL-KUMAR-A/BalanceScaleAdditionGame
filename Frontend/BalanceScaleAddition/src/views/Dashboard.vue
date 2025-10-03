@@ -1,60 +1,64 @@
 <template>
-  <div class="dashboard">
-    <div class="dashboard-header">
-      <h1>👋 Welcome, {{ displayName }}!</h1>
-      <p class="role-badge" :class="roleClass">{{ userRole }}</p>
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-100 mb-4">👋 Welcome, {{ displayName }}!</h1>
+      <p class="inline-block px-6 py-2 rounded-full font-semibold uppercase text-sm" :class="roleClass">
+        {{ userRole }}
+      </p>
     </div>
 
-    <div class="user-info">
-      <p><strong>Email:</strong> {{ user?.email }}</p>
-      <p><strong>User ID:</strong> {{ user?.uid }}</p>
+    <div class="bg-gray-800 p-6 rounded-2xl mb-12 border border-gray-700">
+      <p class="mb-3 text-gray-300"><strong class="text-gray-100">Email:</strong> {{ user?.email }}</p>
+      <p class="text-gray-300"><strong class="text-gray-100">User ID:</strong> {{ user?.uid }}</p>
     </div>
 
-    <div class="quick-links">
-      <h2>Quick Links</h2>
-      <div class="links-grid">
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-100 mb-6">Quick Links</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Student Links -->
-        <router-link v-if="isStudent" to="/student/games" class="link-card">
-          <span class="icon">🎮</span>
-          <h3>Play Games</h3>
-          <p>Practice addition with balance scales</p>
+        <router-link v-if="isStudent" to="/student/games" class="bg-gray-800 p-8 rounded-2xl border-2 border-gray-700 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl text-center group">
+          <span class="text-5xl block mb-4">🎮</span>
+          <h3 class="text-xl font-bold text-gray-100 mb-2 group-hover:text-purple-400">Play Games</h3>
+          <p class="text-gray-400">Practice addition with balance scales</p>
         </router-link>
 
-        <router-link v-if="isStudent" to="/student/progress" class="link-card">
-          <span class="icon">📊</span>
-          <h3>My Progress</h3>
-          <p>View your learning progress</p>
+        <router-link v-if="isStudent" to="/student/progress" class="bg-gray-800 p-8 rounded-2xl border-2 border-gray-700 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl text-center group">
+          <span class="text-5xl block mb-4">📊</span>
+          <h3 class="text-xl font-bold text-gray-100 mb-2 group-hover:text-purple-400">My Progress</h3>
+          <p class="text-gray-400">View your learning progress</p>
         </router-link>
 
         <!-- Teacher Links -->
-        <router-link v-if="isTeacher" to="/teacher/students" class="link-card">
-          <span class="icon">👨‍🎓</span>
-          <h3>My Students</h3>
-          <p>Manage and track students</p>
+        <router-link v-if="isTeacher" to="/teacher/students" class="bg-gray-800 p-8 rounded-2xl border-2 border-gray-700 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl text-center group">
+          <span class="text-5xl block mb-4">👨‍🎓</span>
+          <h3 class="text-xl font-bold text-gray-100 mb-2 group-hover:text-purple-400">My Students</h3>
+          <p class="text-gray-400">Manage and track students</p>
         </router-link>
 
-        <router-link v-if="isTeacher" to="/teacher/assignments" class="link-card">
-          <span class="icon">📝</span>
-          <h3>Assignments</h3>
-          <p>Create and manage assignments</p>
+        <router-link v-if="isTeacher" to="/teacher/assignments" class="bg-gray-800 p-8 rounded-2xl border-2 border-gray-700 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl text-center group">
+          <span class="text-5xl block mb-4">📝</span>
+          <h3 class="text-xl font-bold text-gray-100 mb-2 group-hover:text-purple-400">Assignments</h3>
+          <p class="text-gray-400">Create and manage assignments</p>
         </router-link>
 
         <!-- Admin Links -->
-        <router-link v-if="isAdmin" to="/admin/users" class="link-card">
-          <span class="icon">👥</span>
-          <h3>User Management</h3>
-          <p>Manage all users and roles</p>
+        <router-link v-if="isAdmin" to="/admin/users" class="bg-gray-800 p-8 rounded-2xl border-2 border-gray-700 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl text-center group">
+          <span class="text-5xl block mb-4">👥</span>
+          <h3 class="text-xl font-bold text-gray-100 mb-2 group-hover:text-purple-400">User Management</h3>
+          <p class="text-gray-400">Manage all users and roles</p>
         </router-link>
 
-        <router-link v-if="isAdmin" to="/admin/stats" class="link-card">
-          <span class="icon">📈</span>
-          <h3>Statistics</h3>
-          <p>View system statistics</p>
+        <router-link v-if="isAdmin" to="/admin/stats" class="bg-gray-800 p-8 rounded-2xl border-2 border-gray-700 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl text-center group">
+          <span class="text-5xl block mb-4">📈</span>
+          <h3 class="text-xl font-bold text-gray-100 mb-2 group-hover:text-purple-400">Statistics</h3>
+          <p class="text-gray-400">View system statistics</p>
         </router-link>
       </div>
     </div>
 
-    <button @click="handleLogout" class="btn-logout">Logout</button>
+    <button @click="handleLogout" class="block mx-auto px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl transition-colors">
+      Logout
+    </button>
   </div>
 </template>
 
@@ -75,7 +79,13 @@ const isAdmin = computed(() => authStore.isAdmin)
 const displayName = computed(() => user.value?.displayName || user.value?.email?.split('@')[0] || 'User')
 
 const roleClass = computed(() => {
-  return `role-${userRole.value}`
+  const roleMap = {
+    'user': 'bg-gray-700 text-gray-300',
+    'student': 'bg-blue-900/50 text-blue-300 border border-blue-500',
+    'teacher': 'bg-purple-900/50 text-purple-300 border border-purple-500',
+    'admin': 'bg-red-900/50 text-red-300 border border-red-500'
+  }
+  return roleMap[userRole.value] || roleMap['user']
 })
 
 const handleLogout = async () => {
@@ -83,125 +93,3 @@ const handleLogout = async () => {
   router.push('/')
 }
 </script>
-
-<style scoped>
-.dashboard {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.dashboard-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.dashboard-header h1 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-}
-
-.role-badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-}
-
-.role-user {
-  background: #e0e0e0;
-  color: #666;
-}
-
-.role-student {
-  background: #e3f2fd;
-  color: #1976d2;
-}
-
-.role-teacher {
-  background: #f3e5f5;
-  color: #7b1fa2;
-}
-
-.role-admin {
-  background: #ffebee;
-  color: #c62828;
-}
-
-.user-info {
-  background: #f5f5f5;
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin-bottom: 2rem;
-}
-
-.user-info p {
-  margin: 0.5rem 0;
-  color: #555;
-}
-
-.quick-links h2 {
-  color: #2c3e50;
-  margin-bottom: 1.5rem;
-}
-
-.links-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.link-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 15px;
-  text-decoration: none;
-  border: 2px solid #e0e0e0;
-  transition: all 0.3s;
-  text-align: center;
-}
-
-.link-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  border-color: #667eea;
-}
-
-.link-card .icon {
-  font-size: 3rem;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.link-card h3 {
-  color: #2c3e50;
-  margin-bottom: 0.5rem;
-}
-
-.link-card p {
-  color: #7f8c8d;
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.btn-logout {
-  display: block;
-  margin: 2rem auto 0;
-  padding: 0.75rem 2rem;
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.btn-logout:hover {
-  background: #c0392b;
-}
-</style>
-

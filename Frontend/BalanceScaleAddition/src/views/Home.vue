@@ -1,24 +1,32 @@
 <template>
-  <div class="home">
-    <h1>🎯 Balance Scale Addition Game</h1>
-    <p class="subtitle">Learn addition through visual intuition!</p>
+  <div class="max-w-4xl mx-auto px-6 py-12 text-center">
+    <h1 class="text-5xl font-bold text-gray-100 mb-3">🎯 Balance Scale Addition Game</h1>
+    <p class="text-xl text-gray-400 mb-8">Learn addition through visual intuition!</p>
     
-    <div class="hero">
-      <div class="scale-emoji">⚖️</div>
-      <p class="description">
+    <div class="bg-gradient-to-br from-purple-600 via-purple-700 to-purple-900 text-white p-12 rounded-3xl my-8 shadow-2xl">
+      <div class="text-7xl mb-4">⚖️</div>
+      <p class="text-lg leading-relaxed">
         Master addition by balancing the scale! When you're close but not quite right, 
         the scale tilts to show if your sum is too large or too small.
       </p>
     </div>
 
-    <div class="actions" v-if="!isAuthenticated">
-      <router-link to="/login" class="btn btn-primary">Login</router-link>
-      <router-link to="/register" class="btn btn-secondary">Register</router-link>
+    <div class="flex gap-4 justify-center mt-8" v-if="!isAuthenticated">
+      <router-link to="/login" class="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+        Login
+      </router-link>
+      <router-link to="/register" class="px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-xl border-2 border-purple-600 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+        Register
+      </router-link>
     </div>
 
-    <div class="actions" v-else>
-      <router-link to="/dashboard" class="btn btn-primary">Go to Dashboard</router-link>
-      <button @click="handleLogout" class="btn btn-secondary">Logout</button>
+    <div class="flex gap-4 justify-center mt-8" v-else>
+      <router-link to="/dashboard" class="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+        Go to Dashboard
+      </router-link>
+      <button @click="handleLogout" class="px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-xl border-2 border-purple-600 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+        Logout
+      </button>
     </div>
   </div>
 </template>
@@ -38,79 +46,4 @@ const handleLogout = async () => {
   router.push('/')
 }
 </script>
-
-<style scoped>
-.home {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-h1 {
-  font-size: 2.5rem;
-  color: #2c3e50;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  color: #7f8c8d;
-  margin-bottom: 2rem;
-}
-
-.hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 3rem;
-  border-radius: 20px;
-  margin: 2rem 0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.scale-emoji {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-}
-
-.description {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 2rem;
-}
-
-.btn {
-  padding: 0.75rem 2rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  border: none;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.btn-primary {
-  background: #667eea;
-  color: white;
-}
-
-.btn-secondary {
-  background: white;
-  color: #667eea;
-  border: 2px solid #667eea;
-}
-</style>
 

@@ -1,12 +1,12 @@
 <template>
-  <div class="register-container">
-    <div class="register-card">
-      <h2>📝 Register</h2>
-      <p class="subtitle">Join Balance Scale Addition!</p>
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-purple-700 to-purple-900 p-4">
+    <div class="bg-gray-800 p-10 rounded-3xl shadow-2xl w-full max-w-md border border-gray-700">
+      <h2 class="text-center text-gray-100 mb-2 text-4xl font-bold">📝 Register</h2>
+      <p class="text-center text-gray-400 mb-8">Join Balance Scale Addition!</p>
 
-      <form @submit.prevent="handleRegister" class="register-form">
-        <div class="form-group">
-          <label for="displayName">Display Name</label>
+      <form @submit.prevent="handleRegister" class="mb-6">
+        <div class="mb-6">
+          <label for="displayName" class="block mb-2 text-gray-200 font-semibold">Display Name</label>
           <input
             type="text"
             id="displayName"
@@ -14,11 +14,12 @@
             required
             placeholder="Enter your name"
             :disabled="loading"
+            class="w-full px-4 py-3 bg-gray-900 border-2 border-gray-700 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors disabled:bg-gray-800 disabled:cursor-not-allowed"
           />
         </div>
 
-        <div class="form-group">
-          <label for="email">Email</label>
+        <div class="mb-6">
+          <label for="email" class="block mb-2 text-gray-200 font-semibold">Email</label>
           <input
             type="email"
             id="email"
@@ -26,11 +27,12 @@
             required
             placeholder="Enter your email"
             :disabled="loading"
+            class="w-full px-4 py-3 bg-gray-900 border-2 border-gray-700 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors disabled:bg-gray-800 disabled:cursor-not-allowed"
           />
         </div>
 
-        <div class="form-group">
-          <label for="password">Password</label>
+        <div class="mb-6">
+          <label for="password" class="block mb-2 text-gray-200 font-semibold">Password</label>
           <input
             type="password"
             id="password"
@@ -39,11 +41,12 @@
             placeholder="Enter your password (min 6 characters)"
             :disabled="loading"
             minlength="6"
+            class="w-full px-4 py-3 bg-gray-900 border-2 border-gray-700 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors disabled:bg-gray-800 disabled:cursor-not-allowed"
           />
         </div>
 
-        <div class="form-group">
-          <label for="confirmPassword">Confirm Password</label>
+        <div class="mb-6">
+          <label for="confirmPassword" class="block mb-2 text-gray-200 font-semibold">Confirm Password</label>
           <input
             type="password"
             id="confirmPassword"
@@ -51,30 +54,34 @@
             required
             placeholder="Confirm your password"
             :disabled="loading"
+            class="w-full px-4 py-3 bg-gray-900 border-2 border-gray-700 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors disabled:bg-gray-800 disabled:cursor-not-allowed"
           />
         </div>
 
-        <div v-if="error" class="error-message">
+        <div v-if="error" class="bg-red-900/30 border border-red-500 text-red-300 px-4 py-3 rounded-xl mb-4 text-sm">
           {{ error }}
         </div>
 
-        <button type="submit" class="btn btn-primary" :disabled="loading">
+        <button type="submit" :disabled="loading" class="w-full px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl transition-all duration-200 hover:-translate-y-1 hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none">
           {{ loading ? 'Creating account...' : 'Register' }}
         </button>
       </form>
 
-      <div class="divider">
-        <span>OR</span>
+      <div class="relative text-center my-6">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-gray-700"></div>
+        </div>
+        <span class="relative bg-gray-800 px-4 text-gray-400 text-sm">OR</span>
       </div>
 
-      <button @click="handleGoogleRegister" class="btn btn-google" :disabled="loading">
-        <span class="google-icon">🔍</span>
+      <button @click="handleGoogleRegister" :disabled="loading" class="w-full px-4 py-3 bg-gray-900 hover:bg-gray-700 text-gray-100 border-2 border-gray-700 font-semibold rounded-xl flex items-center justify-center gap-2 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none">
+        <span class="text-xl">🔍</span>
         Sign up with Google
       </button>
 
-      <p class="login-link">
+      <p class="text-center mt-6 text-gray-400">
         Already have an account? 
-        <router-link to="/login">Login here</router-link>
+        <router-link to="/login" class="text-purple-400 hover:text-purple-300 font-semibold hover:underline">Login here</router-link>
       </p>
     </div>
   </div>
@@ -152,167 +159,3 @@ const getErrorMessage = (err) => {
   return errorMessages[err.code] || err.message || 'Registration failed. Please try again.'
 }
 </script>
-
-<style scoped>
-.register-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 1rem;
-}
-
-.register-card {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  max-width: 450px;
-}
-
-h2 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 0.5rem;
-  font-size: 2rem;
-}
-
-.subtitle {
-  text-align: center;
-  color: #7f8c8d;
-  margin-bottom: 2rem;
-}
-
-.register-form {
-  margin-bottom: 1.5rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #2c3e50;
-  font-weight: 600;
-}
-
-input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-}
-
-input:focus {
-  outline: none;
-  border-color: #667eea;
-}
-
-input:disabled {
-  background-color: #f5f5f5;
-  cursor: not-allowed;
-}
-
-.error-message {
-  background: #fee;
-  color: #c33;
-  padding: 0.75rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-}
-
-.btn {
-  width: 100%;
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: none;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-primary {
-  background: #667eea;
-  color: white;
-}
-
-.btn-google {
-  background: white;
-  color: #444;
-  border: 2px solid #e0e0e0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.google-icon {
-  font-size: 1.2rem;
-}
-
-.divider {
-  text-align: center;
-  margin: 1.5rem 0;
-  position: relative;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 45%;
-  height: 1px;
-  background: #e0e0e0;
-}
-
-.divider::before {
-  left: 0;
-}
-
-.divider::after {
-  right: 0;
-}
-
-.divider span {
-  background: white;
-  padding: 0 1rem;
-  color: #7f8c8d;
-  font-size: 0.9rem;
-}
-
-.login-link {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: #7f8c8d;
-}
-
-.login-link a {
-  color: #667eea;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.login-link a:hover {
-  text-decoration: underline;
-}
-</style>
-

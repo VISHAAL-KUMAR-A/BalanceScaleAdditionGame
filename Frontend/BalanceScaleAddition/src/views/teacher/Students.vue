@@ -1,29 +1,33 @@
 <template>
-  <div class="students-page">
-    <h1>👨‍🎓 My Students</h1>
-    <p class="subtitle">Manage and track your students' progress</p>
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold text-gray-100 text-center mb-2">👨‍🎓 My Students</h1>
+    <p class="text-center text-gray-400 mb-12">Manage and track your students' progress</p>
 
-    <div v-if="loading" class="loading">Loading students...</div>
+    <div v-if="loading" class="text-center py-12 text-xl text-gray-400">Loading students...</div>
     
-    <div v-else-if="error" class="error">{{ error }}</div>
+    <div v-else-if="error" class="text-center py-12 text-xl text-red-400">{{ error }}</div>
 
-    <div v-else class="students-list">
-      <div v-for="student in students" :key="student.id" class="student-card">
-        <div class="student-avatar">{{ student.name.charAt(0) }}</div>
-        <div class="student-info">
-          <h3>{{ student.name }}</h3>
-          <p class="student-id">ID: {{ student.id }}</p>
+    <div v-else class="grid gap-6 mb-8">
+      <div v-for="student in students" :key="student.id" class="bg-gray-800 p-6 rounded-2xl border border-gray-700 flex items-center gap-6 hover:border-purple-500 hover:translate-x-2 transition-all duration-300">
+        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-600 to-purple-800 text-white flex items-center justify-center text-2xl font-bold flex-shrink-0">
+          {{ student.name.charAt(0) }}
         </div>
-        <div class="student-progress">
-          <div class="progress-circle" :style="{ background: getProgressColor(student.progress) }">
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-gray-100 mb-1">{{ student.name }}</h3>
+          <p class="text-gray-400 text-sm">ID: {{ student.id }}</p>
+        </div>
+        <div class="text-center">
+          <div class="w-20 h-20 rounded-full flex items-center justify-center text-xl font-bold text-white mb-2" :style="{ background: getProgressColor(student.progress) }">
             {{ student.progress }}%
           </div>
-          <p>Progress</p>
+          <p class="text-gray-400 text-sm">Progress</p>
         </div>
       </div>
     </div>
 
-    <router-link to="/dashboard" class="btn-back">← Back to Dashboard</router-link>
+    <router-link to="/dashboard" class="inline-block px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl transition-colors">
+      ← Back to Dashboard
+    </router-link>
   </div>
 </template>
 
@@ -48,131 +52,12 @@ const fetchStudents = async () => {
 }
 
 const getProgressColor = (progress) => {
-  if (progress >= 80) return '#4caf50'
-  if (progress >= 60) return '#ff9800'
-  return '#f44336'
+  if (progress >= 80) return '#10b981'  // green-500
+  if (progress >= 60) return '#f59e0b'  // amber-500
+  return '#ef4444'  // red-500
 }
 
 onMounted(() => {
   fetchStudents()
 })
 </script>
-
-<style scoped>
-.students-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-h1 {
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  text-align: center;
-  color: #7f8c8d;
-  margin-bottom: 2rem;
-}
-
-.loading, .error {
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.1rem;
-}
-
-.error {
-  color: #e74c3c;
-}
-
-.students-list {
-  display: grid;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.student-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 15px;
-  border: 2px solid #e0e0e0;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  transition: all 0.3s;
-}
-
-.student-card:hover {
-  transform: translateX(5px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.student-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.student-info {
-  flex: 1;
-}
-
-.student-info h3 {
-  color: #2c3e50;
-  margin-bottom: 0.25rem;
-}
-
-.student-id {
-  color: #95a5a6;
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.student-progress {
-  text-align: center;
-}
-
-.progress-circle {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: white;
-  margin-bottom: 0.5rem;
-}
-
-.student-progress p {
-  color: #7f8c8d;
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.btn-back {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background: #95a5a6;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-
-.btn-back:hover {
-  background: #7f8c8d;
-}
-</style>
-
