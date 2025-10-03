@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.firebase import initialize_firebase
 from app.core.database import init_db
-from app.api.routes import auth_db, protected_db
+from app.api.routes import auth_db, protected_db, game
 
 # Initialize Firebase (for Google Sign-in only)
 initialize_firebase()
@@ -29,6 +29,7 @@ app.add_middleware(
 # Include routers
 app.include_router(auth_db.router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(protected_db.router, prefix="/api", tags=["Protected Routes"])
+app.include_router(game.router, prefix="/api/game", tags=["Balance Scale Game"])
 
 
 @app.get("/")
